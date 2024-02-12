@@ -13,13 +13,13 @@ model first_categories {
   first_category_name  String?
   first_category_photo String?
   menu_id              Int?
-  menu                 menu?               @relation(fields: [menu_id], references: [menu_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_first_categories_menu")
+  menu                 menu?               @relation(fields: [menu_id], references: [menu_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_menu_first_categories")
   products             products[]
   second_categories    second_categories[]
 }
 
 model menu {
-  menu_id          Int                @id @default(autoincrement())
+  menu_id          Int                @id(map: "pk_menu_menu_id") @default(autoincrement())
   menu_name        String?
   menu_photo       String?
   first_categories first_categories[]
