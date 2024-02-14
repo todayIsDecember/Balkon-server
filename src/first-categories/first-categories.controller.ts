@@ -41,4 +41,10 @@ export class FirstCategoriesController {
 		}
 		return this.firstCategoriesService.deleteById(id);
 	}
+
+	@HttpCode(200)
+	@Get('byId/:id')
+	async getById(@Param('id') id: number) {
+		return this.firstCategoriesService.findById(id);
+	}
 }
