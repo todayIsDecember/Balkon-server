@@ -1,12 +1,12 @@
 import { IsNumber, IsString } from 'class-validator';
 
-export class CreateFirstCategoryDto {
+export class CreateCategoryDto {
 	@IsString({ message: 'поле має бути заповнене в текстовому форматі' })
-	first_category_name: string;
+	category_title: string;
 
 	@IsString()
-	first_category_photo: string;
+	category_photo: string;
 
 	@IsNumber()
-	menu_id: number;
+	father_id: number;
 }

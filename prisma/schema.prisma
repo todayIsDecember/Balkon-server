@@ -7,41 +7,23 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model first_categories {
-  first_category_id    Int                 @id(map: "pk_first_categories_first_category_id") @default(autoincrement())
-  first_category_name  String?
-  first_category_photo String?
-  menu_id              Int?
-  menu                 menu?               @relation(fields: [menu_id], references: [menu_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_menu_first_categories")
-  products             products[]
-  second_categories    second_categories[]
-}
-
-model menu {
-  menu_id          Int                @id(map: "pk_menu_menu_id") @default(autoincrement())
-  menu_name        String?
-  menu_photo       String?
-  first_categories first_categories[]
+model categories {
+  category_id      Int          @id(map: "pk_categories_category_id") @default(autoincrement())
+  category_title   String?
+  category_photo   String?
+  father_id        Int?
+  categories       categories?  @relation("categoriesTocategories", fields: [father_id], references: [category_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_category_id_father_id")
+  other_categories categories[] @relation("categoriesTocategories")
+  products         products[]
 }
 
 model products {
-  product_id          Int                @id(map: "pk_products_product_id") @default(autoincrement())
+  product_id          Int         @id(map: "pk_products_product_id") @default(autoincrement())
   product_name        String?
   product_photo       String?
   product_description String?
   product_price       Int?
   product_weight      Int?
-  first_category_id   Int?
-  second_category_id  Int?
-  first_categories    first_categories?  @relation(fields: [first_category_id], references: [first_category_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_products_first_categories")
-  second_categories   second_categories? @relation(fields: [second_category_id], references: [second_category_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_products_second_categories")
-}
-
-model second_categories {
-  second_category_id    Int               @id(map: "pk_second_categories_second_category_id") @default(autoincrement())
-  second_category_name  String?
-  second_category_photo String?
-  first_category_id     Int?
-  products              products[]
-  first_categories      first_categories? @relation(fields: [first_category_id], references: [first_category_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_second_categories_first_categories")
+  category_id         Int?
+  categories          categories? @relation(fields: [category_id], references: [category_id], onDelete: Cascade, map: "public_products_category_id_fkey")
 }
