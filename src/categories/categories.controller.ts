@@ -38,10 +38,16 @@ export class CategoriesController {
 		return this.categoriesService.deleteById(id);
 	}
 
-	//Отримати категорію
+	//Отримати категорії
 	@HttpCode(200)
-	@Get('byId/:id')
+	@Get(':id')
 	async getById(@Param('id') id: number) {
 		return this.categoriesService.findById(id);
+	}
+
+	@HttpCode(200)
+	@Get()
+	async getFather() {
+		return this.categoriesService.getFatherCategories();
 	}
 }

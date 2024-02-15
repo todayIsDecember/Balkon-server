@@ -27,3 +27,11 @@ model products {
   category_id         Int?
   categories          categories? @relation(fields: [category_id], references: [category_id], onDelete: Cascade, map: "public_products_category_id_fkey")
 }
+
+model reviews {
+  review_id         Int     @id @default(autoincrement())
+  title             String?
+  foodraiting       Int?
+  serviceraiting    Int?
+  atmosthereraiting Int?
+}

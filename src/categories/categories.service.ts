@@ -21,6 +21,16 @@ export class CategoriesService {
 			where: {
 				category_id: Number(id),
 			},
+			include: {
+				categories: {
+					select: {
+						category_title: true,
+						category_id: true,
+					},
+				},
+				other_categories: true,
+				products: true,
+			},
 		});
 	}
 
@@ -40,6 +50,26 @@ export class CategoriesService {
 		return this.prismaService.categories.delete({
 			where: {
 				category_id: Number(id),
+			},
+		});
+	}
+
+	// Отримуємо головні категорії
+	async getFatherCategories() {
+		return this.prismaService.categories.findMany({
+			where: {
+				father_id: null,
+			},
+			include: {
+				other_categories: {
+					include: {
+						categories: {
+							select: {
+								category_id: true,
+							},
+						},
+					},
+				},
 			},
 		});
 	}

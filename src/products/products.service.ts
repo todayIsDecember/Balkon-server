@@ -20,11 +20,19 @@ export class ProductsService {
 		return this.prismaService.products.create({
 			data: {
 				product_name: dto.product_name,
-				product_photo: dto.product_description,
+				product_photo: dto.product_photo,
 				product_price: dto.product_price,
 				product_description: dto.product_description,
 				product_weight: dto.product_weight,
 				category_id: dto.category_id,
+			},
+		});
+	}
+
+	async getProductById(id: number) {
+		return this.prismaService.products.findFirst({
+			where: {
+				product_id: Number(id),
 			},
 		});
 	}
