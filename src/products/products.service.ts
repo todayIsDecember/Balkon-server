@@ -24,8 +24,7 @@ export class ProductsService {
 				product_price: dto.product_price,
 				product_description: dto.product_description,
 				product_weight: dto.product_weight,
-				first_category_id: dto.first_category_id,
-				second_category_id: dto.second_category_id,
+				category_id: dto.category_id,
 			},
 		});
 	}

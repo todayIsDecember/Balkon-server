@@ -17,8 +17,5 @@ export class CreateProductDto {
 	product_weight: number;
 
 	@IsNumber()
-	first_category_id: number;
-
-	@IsOptional()
-	second_category_id: number;
+	category_id: number;
 }
