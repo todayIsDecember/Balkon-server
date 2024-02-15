@@ -13,8 +13,8 @@ import { ALREADY_EXIST_ERROR, NOT_FOUND } from './categories.constants';
 import { CategoriesService } from './categories.service';
 import { CreateCategoryDto } from './dto/CreateCategoryDto';
 
-@Controller('first-categories')
-export class FirstCategoriesController {
+@Controller('categories')
+export class CategoriesController {
 	constructor(private readonly categoriesService: CategoriesService) {}
 
 	//Створити категорію
