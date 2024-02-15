@@ -34,7 +34,7 @@ export class ReviewsController {
 		const reviews = await this.reviewsService.getAll();
 		return new Object({
 			count: reviewsCount,
-			...reviews,
+			reviews: reviews,
 		});
 	}
 }

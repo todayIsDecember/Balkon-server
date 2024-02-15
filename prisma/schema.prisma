@@ -34,4 +34,5 @@ model reviews {
   foodraiting       Int?
   serviceraiting    Int?
   atmosthereraiting Int?
+  created           String?
 }
