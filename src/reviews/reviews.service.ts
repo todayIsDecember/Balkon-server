@@ -13,9 +13,8 @@ export class ReviewsService {
 		return this.prismaService.reviews.create({
 			data: {
 				title: dto.title,
-				atmosthereraiting: dto.atmosthereRaiting,
-				serviceraiting: dto.serviceRaiting,
-				foodraiting: dto.foodRaiting,
+				raiting: dto.raiting,
+				description: dto.description,
 				created: format(new Date(), 'dd MMMM HH:mm', { locale: uk }),
 			},
 		});
@@ -32,5 +31,14 @@ export class ReviewsService {
 
 	async getAllCount() {
 		return this.prismaService.reviews.count({});
+	}
+
+	// середній рейтинг
+	async getAverageRaiting() {
+		return this.prismaService.reviews.aggregate({
+			_avg: {
+				raiting: true,
+			},
+		});
 	}
 }

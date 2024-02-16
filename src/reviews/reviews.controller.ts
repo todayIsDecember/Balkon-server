@@ -32,8 +32,10 @@ export class ReviewsController {
 			throw new HttpException(REVIEW_NOT_FOUND_ERROR, HttpStatus.NOT_FOUND);
 		}
 		const reviews = await this.reviewsService.getAll();
+		const avg = await this.reviewsService.getAverageRaiting();
 		return new Object({
 			count: reviewsCount,
+			avg,
 			reviews: reviews,
 		});
 	}

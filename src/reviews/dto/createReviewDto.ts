@@ -6,12 +6,11 @@ export class CreateReviewDto {
 	})
 	title: string;
 
-	@IsNumber()
-	foodRaiting: number;
+	@IsString({
+		message: 'це поле обов`язкове',
+	})
+	description: string;
 
 	@IsNumber()
-	serviceRaiting: number;
-
-	@IsNumber()
-	atmosthereRaiting: number;
+	raiting: number;
 }

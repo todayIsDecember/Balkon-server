@@ -29,10 +29,9 @@ model products {
 }
 
 model reviews {
-  review_id         Int     @id @default(autoincrement())
-  title             String?
-  foodraiting       Int?
-  serviceraiting    Int?
-  atmosthereraiting Int?
-  created           String?
+  review_id   Int     @id @default(autoincrement())
+  title       String?
+  raiting     Int?
+  created     String?
+  description String?
 }
