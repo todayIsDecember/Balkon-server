@@ -35,3 +35,13 @@ model reviews {
   created     String?
   description String?
 }
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model about {
+  id          Int      @id @default(autoincrement()) @db.SmallInt
+  name        String?
+  contacts    String?
+  location    String?
+  description String?
+  wifi        String[]
+}
