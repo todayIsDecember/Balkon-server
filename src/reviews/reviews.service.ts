@@ -12,7 +12,6 @@ export class ReviewsService {
 	async create(dto: CreateReviewDto) {
 		return this.prismaService.reviews.create({
 			data: {
-				title: dto.title,
 				raiting: dto.raiting,
 				description: dto.description,
 				created: format(new Date(), 'dd MMMM HH:mm', { locale: uk }),

@@ -30,7 +30,6 @@ model products {
 
 model reviews {
   review_id   Int     @id @default(autoincrement())
-  title       String?
   raiting     Int?
   created     String?
   description String?

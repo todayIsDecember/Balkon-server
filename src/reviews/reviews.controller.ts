@@ -12,15 +12,22 @@ import {
 import { ReviewsService } from './reviews.service';
 import { CreateReviewDto } from './dto/createReviewDto';
 import { REVIEW_NOT_FOUND_ERROR } from './reviews.constants';
+import { TelegramService } from 'src/telegram/telegram.service';
+import { generateMessage } from './message';
 
 @Controller('reviews')
 export class ReviewsController {
-	constructor(private readonly reviewsService: ReviewsService) {}
+	constructor(
+		private readonly telegramService: TelegramService,
+		private readonly reviewsService: ReviewsService,
+	) {}
 
 	@UsePipes(new ValidationPipe())
 	@HttpCode(201)
 	@Post()
 	async create(@Body() dto: CreateReviewDto) {
+		const message = generateMessage(dto);
+		this.telegramService.sendMessage(message);
 		return this.reviewsService.create(dto);
 	}
 

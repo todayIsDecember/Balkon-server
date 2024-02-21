@@ -1,5 +1,6 @@
 import { Controller, Get, HttpCode } from '@nestjs/common';
 import { AboutService } from './about.service';
+import { FilesService } from 'src/files/files.service';
 
 @Controller('about')
 export class AboutController {
@@ -8,6 +9,6 @@ export class AboutController {
 	@HttpCode(200)
 	@Get()
 	async get() {
-		return this.aboutService.get();
+		return await this.aboutService.get();
 	}
 }
